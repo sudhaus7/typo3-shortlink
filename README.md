@@ -1,4 +1,4 @@
-# Shortlink 
+# Shortcutlink (Shortlink) 
 
 A urlshortener for TYPO3
 
@@ -15,16 +15,16 @@ Import the namespace like this:
 
 ```html
 <html
-        xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-        xmlns:shortlink="http://typo3.org/ns/SUDHAUS7/Shortlink/ViewHelpers"
-        data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:scl="http://typo3.org/ns/SUDHAUS7/Shortlink/ViewHelpers"
+    data-namespace-typo3-fluid="true"
 >
 ``` 
 
 or like this:
 
 ```
-{namespace shortlink=SUDHAUS7\Shortlink\ViewHelpers}
+{namespace scl=SUDHAUS7\Shortcutlink\ViewHelpers}
 ```
 
 The following ViewHelpers are available:
@@ -45,7 +45,7 @@ That means you can now replace any
 ```
 simply with
 ```html
-<shortlink:link.page pageId="15">The link</shortlink:link.page>
+<scl:link.page pageId="15">The link</scl:link.page>
 ```
 
 
@@ -55,8 +55,8 @@ simply with
 a simple example to shorten a URL:
 
 ```php
-use SUDHAUS7\Shortlink\Service\ShortlinkService;use TYPO3\CMS\Core\Utility\GeneralUtility;$url = 'https://google.com/';
-$shortener = GeneralUtility::makeInstance(ShortlinkService::class);
+$url = 'https://google.com/';
+$shortener = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\SUDHAUS7\Shortcutlink\Service\ShortlinkService::class);
     
 $shortener->setUrl($url);
 $shortlink = $shortener->getShorturlWithDomain();
@@ -70,7 +70,7 @@ For this all ViewHelpers have an additional attribute `chainToUserid` which acce
 
 For example:
 ```html
-<shortlink:link.page pageId="15" chainToUserid="42">The link</shortlink:link.page>
+<scl:link.page pageId="15" chainToUserid="42">The link</scl:link.page>
 ```
 
 The resulting Shortlink can only be opened if the User with the ID 42 is logged in.
@@ -78,8 +78,8 @@ The resulting Shortlink can only be opened if the User with the ID 42 is logged 
 The PHP equivialent to this would be:
 
 ```php
-use SUDHAUS7\Shortlink\Service\ShortlinkService;use TYPO3\CMS\Core\Utility\GeneralUtility;$url = 'https://google.com/';
-$shortener = GeneralUtility::makeInstance(ShortlinkService::class);
+$url = 'https://google.com/';
+$shortener = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\SUDHAUS7\Shortcutlink\Service\ShortlinkService::class);
     
 $shortener->setUrl($url);
 $shortener->setFeuser(42);

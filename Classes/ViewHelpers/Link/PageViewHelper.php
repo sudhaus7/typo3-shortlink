@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SUDHAUS7\Shortlink\ViewHelpers\Link;
+namespace SUDHAUS7\Shortcutlink\ViewHelpers\Link;
 
 
-use SUDHAUS7\Shortlink\Service\ShortlinkService;
+use SUDHAUS7\Shortcutlink\Service\ShortlinkService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class PageViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper

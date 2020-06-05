@@ -1,15 +1,15 @@
 <?php
 
 
-namespace SUDHAUS7\Shortlink\Middleware;
+namespace SUDHAUS7\Shortcutlink\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use SUDHAUS7\Shortlink\Exception\NoSuchShortlinkException;
-use SUDHAUS7\Shortlink\Exception\ShortlinkPermissionDeniedException;
-use SUDHAUS7\Shortlink\Service\ShortlinkService;
+use SUDHAUS7\Shortcutlink\Exception\NoSuchShortlinkException;
+use SUDHAUS7\Shortcutlink\Exception\ShortlinkPermissionDeniedException;
+use SUDHAUS7\Shortcutlink\Service\ShortlinkService;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,7 +19,7 @@ class RedirectMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['shortlink'], ['allowed_classes'=>[]]);
+        $confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['shortcutlink'], ['allowed_classes'=>[]]);
         if (strpos($request->getUri()->getPath(), $confArr['base'])===0) {
             $pathArr = GeneralUtility::trimExplode('/', trim($request->getUri()->getPath(), '/'));
             if ('/'.$pathArr[0].'/'===$confArr['base'] && !empty($pathArr[1])) {

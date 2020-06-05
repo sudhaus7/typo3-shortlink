@@ -22,7 +22,7 @@ $EM_CONF[$_EXTKEY] = [
     ],
     'autoload' => [
         'psr-4' => [
-            'SUDHAUS7\\Shortlink\\' => 'Classes',
+            'SUDHAUS7\\Shortcutlink\\' => 'Classes',
             'Tuupola\\' => 'vendor/tuupola/base62/src',
         ]
     ],

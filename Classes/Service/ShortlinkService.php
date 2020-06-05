@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SUDHAUS7\Shortlink\Service;
+namespace SUDHAUS7\Shortcutlink\Service;
 
 use Psr\Http\Message\ServerRequestInterface;
-use SUDHAUS7\Shortlink\Exception\NoSuchShortlinkException;
-use SUDHAUS7\Shortlink\Exception\ShortlinkPermissionDeniedException;
+use SUDHAUS7\Shortcutlink\Exception\NoSuchShortlinkException;
+use SUDHAUS7\Shortcutlink\Exception\ShortlinkPermissionDeniedException;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -16,7 +16,7 @@ class ShortlinkService
     /**
      * @var string
      */
-    protected static $TABLENAME = 'tx_shortlink_domain_model_shortlink';
+    protected static $TABLENAME = 'tx_shortcutlink_domain_model_shortlink';
 
     /**
      * @var string
@@ -135,7 +135,7 @@ class ShortlinkService
      */
     public function getShorturl()
     {
-        $confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['shortlink'], ['allowed_classes'=>[]]);
+        $confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['shortcutlink'], ['allowed_classes'=>[]]);
 
         return $confArr['base'].$this->encode();
     }

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SUDHAUS7\Shortlink\ViewHelpers\Uri;
+namespace SUDHAUS7\Shortcutlink\ViewHelpers\Uri;
 
 
-use SUDHAUS7\Shortlink\Service\ShortlinkService;
+use SUDHAUS7\Shortcutlink\Service\ShortlinkService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 

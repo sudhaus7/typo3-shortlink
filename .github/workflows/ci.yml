@@ -26,5 +26,5 @@ jobs:
         env:
           SECRET_USERNAME: ${{ secrets.USERNAME }}
           SECRET_PASSWORD: ${{ secrets.PASSWORD }}
-          EXTENSION_KEY: 'shortlink'
+          EXTENSION_KEY: 'shortcutlink'
           UPLOAD_MESSAGE: ${{ github.event.head_commit.message }}
