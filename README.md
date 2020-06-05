@@ -16,7 +16,7 @@ Import the namespace like this:
 ```html
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-    xmlns:scl="http://typo3.org/ns/SUDHAUS7/Shortlink/ViewHelpers"
+    xmlns:scl="http://typo3.org/ns/SUDHAUS7/Shortcutlink/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 ``` 
