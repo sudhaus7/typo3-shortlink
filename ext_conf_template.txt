@@ -1,0 +1,2 @@
+# cat=basic//01; type=string; label=Slug before the shortened url
+base = /goto/

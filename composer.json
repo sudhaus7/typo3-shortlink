@@ -1,0 +1,62 @@
+{
+  "name": "sudhaus7/shortlink",
+  "description": "A flexible url shortener for TYPO3, with FLUID ViewHelpers and Encodeservice",
+  "version": "0.0.1",
+  "keywords": [
+    "typo3",
+    "url",
+    "shortener"
+  ],
+  "authors": [
+    {
+      "name": "Frank Berger",
+      "role": "Developer",
+      "email": "fberger@sudhaus7.de"
+    }
+  ],
+  "license": "MIT",
+  "type": "typo3-cms-extension",
+  "require": {
+    "php": ">=7.2",
+    "typo3/cms-core": "~9.5.0 | ~10.4.0",
+    "tuupola/base62": "2.*"
+  },
+  "require-dev": {
+    "typo3/cms-fluid-styled-content": "^10.4.2",
+    "typo3/cms-tstemplate": "^10.4.2",
+    "typo3/cms-backend": "^10.4.2",
+    "typo3/cms-t3editor": "^10.4.2",
+    "typo3/cms-lowlevel": "^10.4.2",
+    "codeception/codeception": "^3.1",
+    "codeception/phpbuiltinserver": "^1.5",
+    "helhum/typo3-console": "^6.0"
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "shortlink",
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/public"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "SUDHAUS7\\Shortlink\\": "Classes/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/public/typo3conf/ext/",
+      "[ -L .Build/public/typo3conf/ext/shortlink ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/shortlink"
+    ],
+    "test-local": "@php .Build/vendor/bin/codecept run --env local",
+    "test-ci": "@php .Build/vendor/bin/codecept run --env ci"
+  }
+
+}

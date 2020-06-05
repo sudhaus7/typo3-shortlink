@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2018-10-08T10:59:19Z">
+        <header>
+            <generator>OwnScript</generator>
+        </header>
+        <body>
+
+            <trans-unit id="tca.title">
+                <source>Shortlink</source>
+            </trans-unit>
+            <trans-unit id="tca.shortlink">
+                <source>Link Key</source>
+            </trans-unit>
+            <trans-unit id="tca.url">
+                <source>URL to redirect to</source>
+            </trans-unit>
+            <trans-unit id="tca.checksum">
+                <source>URL Checksum</source>
+            </trans-unit>
+            <trans-unit id="tca.feuser">
+                <source>Only usable by this Frontenduser</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
