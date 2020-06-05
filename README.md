@@ -62,20 +62,20 @@ $shortener->setUrl($url);
 $shortlink = $shortener->getShorturlWithDomain();
 ``` 
 
-## Locking a Shortend URL to a Frontenduser
+## Locking a shortend URL to a frontend user
 
-It is possible to lock a Frontendenduser ID to the shortened URL, which means that the shortlink can only be opened with an existing Frontenduser Session with the same userid
+It is possible to lock a frontend user ID to the shortened URL, which means that the short link can only be opened with an existing frontend user Session with the same user id
 
-For this all ViewHelpers have an additional attribute `chainToUserid` which accepts the Userid of the Frontenduser it has to be chained to.
+For this all ViewHelpers have an additional attribute `chainToUserid` which accepts the user id of the frontend user it has to be chained to.
 
 For example:
 ```html
 <scl:link.page pageId="15" chainToUserid="42">The link</scl:link.page>
 ```
 
-The resulting Shortlink can only be opened if the User with the ID 42 is logged in.
+The resulting short link can only be opened if the user with the ID 42 is logged in.
 
-The PHP equivialent to this would be:
+The PHP equivalent to this would be:
 
 ```php
 $url = 'https://google.com/';
