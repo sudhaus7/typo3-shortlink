@@ -2,7 +2,7 @@
   "name": "sudhaus7/shortcutlink",
   "description": "A flexible url shortener for TYPO3, with FLUID ViewHelpers and Encodeservice",
   "homepage": "https://github.com/sudhaus7/typo3-shortlink",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "typo3",
     "url",
@@ -41,7 +41,7 @@
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "shortlink",
+      "extension-key": "shortcutlink",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/public"
     }
@@ -54,7 +54,7 @@
   "scripts": {
     "post-autoload-dump": [
       "mkdir -p .Build/public/typo3conf/ext/",
-      "[ -L .Build/public/typo3conf/ext/shortlink ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/shortlink"
+      "[ -L .Build/public/typo3conf/ext/shortcutlink ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/shortcutlink"
     ],
     "test-local": "@php .Build/vendor/bin/codecept run --env local",
     "test-ci": "@php .Build/vendor/bin/codecept run --env ci"
