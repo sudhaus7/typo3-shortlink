@@ -1,0 +1,30 @@
+name: Publish
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish:
+    name: Publish to TER
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Set up PHP Version 7.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+      - name: Install Dependencies - move old composer.json
+        run: |
+          mv composer.json composer.json-orig
+          composer require tuupola/base62 ^2.0  --ignore-platform-reqs --no-progress
+          mv composer.json-orig composer.json
+          rm composer.lock
+      - name: Publish to TER
+        uses: the-coding-owl/action-typo3-extension-repository-upload@0.0.1
+        env:
+          SECRET_USERNAME: ${{ secrets.USERNAME }}
+          SECRET_PASSWORD: ${{ secrets.PASSWORD }}
+          EXTENSION_KEY: 'shortlink'
+          UPLOAD_MESSAGE: ${{ github.event.head_commit.message }}
