@@ -4,7 +4,7 @@ $EM_CONF[$_EXTKEY] = [
     'title' => '(Sudhaus7) URL/Link Shortener',
     'description' => 'A URL/Link Shortener for the TYPO3 frontend',
     'category' => 'plugin',
-    'version' => '0.0.1',
+    'version' => '1.0.0',
     'state' => 'stable',
     'uploadfolder' => 0,
     'clearcacheonload' => 0,
@@ -22,7 +22,8 @@ $EM_CONF[$_EXTKEY] = [
     ],
     'autoload' => [
         'psr-4' => [
-            'SUDHAUS7\\Shortlink\\' => 'Classes'
+            'SUDHAUS7\\Shortlink\\' => 'Classes',
+            'Tuupola\\' => 'vendor/tuupola/base62/src',
         ]
     ],
 ];

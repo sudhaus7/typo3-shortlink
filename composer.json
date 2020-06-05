@@ -1,7 +1,7 @@
 {
   "name": "sudhaus7/shortlink",
   "description": "A flexible url shortener for TYPO3, with FLUID ViewHelpers and Encodeservice",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "keywords": [
     "typo3",
     "url",
@@ -19,7 +19,7 @@
   "require": {
     "php": ">=7.2",
     "typo3/cms-core": "~9.5.0 | ~10.4.0",
-    "tuupola/base62": "2.*"
+    "tuupola/base62": "^2.0.0"
   },
   "require-dev": {
     "typo3/cms-fluid-styled-content": "^10.4.2",
