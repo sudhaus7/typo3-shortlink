@@ -14,12 +14,14 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 class RedirectMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['shortcutlink'], ['allowed_classes'=>[]]);
+        $confArr = GeneralUtility::makeInstance(ExtensionConfiguration::class)
+            ->get('shortcutlink');
         if (strpos($request->getUri()->getPath(), $confArr['base'])===0) {
             $pathArr = GeneralUtility::trimExplode('/', trim($request->getUri()->getPath(), '/'));
             if ('/'.$pathArr[0].'/'===$confArr['base'] && !empty($pathArr[1])) {

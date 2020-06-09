@@ -1,19 +1,16 @@
 <?php
 
 
+use SUDHAUS7\Shortcutlink\Middleware\RedirectMiddleware;
+
 return [
     'frontend' => [
 
-        'shortlink/frontend/redirect' => [
-            'target' => \SUDHAUS7\Shortlink\Middleware\RedirectMiddleware::class,
+        'shortcutlink/frontend/redirect' => [
+            'target' => RedirectMiddleware::class,
             'before' => [
                 'typo3/cms-frontend/preprocessing',
             ],
         ]
     ]
 ];
-/**
- * 'after' => [
-'typo3/cms-frontend/authentication',
-],
- */

@@ -6,10 +6,12 @@ namespace SUDHAUS7\Shortcutlink\Service;
 use Psr\Http\Message\ServerRequestInterface;
 use SUDHAUS7\Shortcutlink\Exception\NoSuchShortlinkException;
 use SUDHAUS7\Shortcutlink\Exception\ShortlinkPermissionDeniedException;
+use Tuupola\Base62;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 class ShortlinkService
 {
@@ -67,7 +69,7 @@ class ShortlinkService
                 ])->execute();
 
             $uid = $query->getConnection()->lastInsertId();
-            $base62 = new \Tuupola\Base62();
+            $base62 = new Base62();
             $shortlink = $base62->encode($uid.'-'.random_bytes(4).'-'.$this->feuser);
 
             $query->update(self::$TABLENAME)
@@ -135,7 +137,8 @@ class ShortlinkService
      */
     public function getShorturl()
     {
-        $confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['shortcutlink'], ['allowed_classes'=>[]]);
+        $confArr = GeneralUtility::makeInstance(ExtensionConfiguration::class)
+            ->get('shortcutlink');
 
         return $confArr['base'].$this->encode();
     }
