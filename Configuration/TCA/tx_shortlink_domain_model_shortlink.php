@@ -10,9 +10,9 @@ return [
         'adminOnly' => true,
         'hideTable' => true,
         'rootLevel' => 0,
-        'title' => 'LLL:EXT:shortlink/Resources/Private/Language/locallang.xlf:tca.title',
+        'title' => 'LLL:EXT:shortcutlink/Resources/Private/Language/locallang.xlf:tca.title',
         'searchFields' => 'title',
-        'iconfile' => 'EXT:shortlink/Resources/Public/Icons/Extension.svg'
+        'iconfile' => 'EXT:shortcutlink/Resources/Public/Icons/Extension.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'shortlink,url'
@@ -27,25 +27,25 @@ return [
     'columns' => [
 
         'shortlink' => [
-            'label' => 'LLL:EXT:zwbisdrei_userconfig/Resources/Private/Language/locallang.xlf:tca.shortlink',
+            'label' => 'LLL:EXT:shortcutlink/Resources/Private/Language/locallang.xlf:tca.shortlink',
             'config' => [
                 'type' => 'input'
             ]
         ],
         'checksum' => [
-            'label' => 'LLL:EXT:zwbisdrei_userconfig/Resources/Private/Language/locallang.xlf:tca.checksum',
+            'label' => 'LLL:EXT:shortcutlink/Resources/Private/Language/locallang.xlf:tca.checksum',
             'config' => [
                 'type' => 'input'
             ]
         ],
         'url' => [
-            'label' => 'LLL:EXT:zwbisdrei_userconfig/Resources/Private/Language/locallang.xlf:tca.url',
+            'label' => 'LLL:EXT:shortcutlink/Resources/Private/Language/locallang.xlf:tca.url',
             'config' => [
                 'type' => 'input'
             ]
         ],
         'feuser' => [
-            'label' => 'LLL:EXT:zwbisdrei_userconfig/Resources/Private/Language/locallang.xlf:tca.feuser',
+            'label' => 'LLL:EXT:shortcutlink/Resources/Private/Language/locallang.xlf:tca.feuser',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
