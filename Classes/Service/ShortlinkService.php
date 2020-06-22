@@ -45,10 +45,15 @@ class ShortlinkService
 
     public function encode(): string
     {
+
+        if ($this->url === 'http://' || $this->url === 'https://') {
+            return $this->url;
+        }
+        
         /** @var Connection $db */
         $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
 
-        $checksum = hash('sha256', $this->url);
+        $checksum = hash('sha256', $this->url.'-'.$this->feuser);
 
         $query = $db->createQueryBuilder();
         $row = $query->select('*')
