@@ -28,6 +28,7 @@
     "typo3/cms-backend": "^10.4.2",
     "typo3/cms-t3editor": "^10.4.2",
     "typo3/cms-lowlevel": "^10.4.2",
+    "typo3/cms-fluid": "^10.4.2",
     "codeception/codeception": "^3.1",
     "codeception/phpbuiltinserver": "^1.5",
     "helhum/typo3-console": "^6.0"
