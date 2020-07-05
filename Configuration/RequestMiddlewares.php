@@ -14,13 +14,4 @@ return [
             ],
         ]
     ],
-    'backend' => [
-    
-        'shortcutlink/backend/newapikey' => [
-            'target' => NewApikeyMiddleware::class,
-            'after' => [
-                'typo3/cms-backend/authentication',
-            ],
-        ]
-    ]
 ];
