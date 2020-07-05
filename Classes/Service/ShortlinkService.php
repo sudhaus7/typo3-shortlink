@@ -24,25 +24,41 @@ class ShortlinkService
      * @var string
      */
     private $url = '';
-
+    
+    /**
+     * @var int FrontendUser ID
+     */
     private $feuser = 0;
-
+    
+    /**
+     * @var array
+     */
     private $data = [];
 
     public function __construct()
     {
     }
-
+    
+    /**
+     * @param string $url
+     */
     public function setUrl(string $url)
     {
         $this->url = $url;
     }
-
+    
+    /**
+     * @param int $feuser
+     */
     public function setFeuser(int $feuser)
     {
         $this->feuser = $feuser;
     }
-
+    
+    /**
+     * @return string
+     * @throws \Exception
+     */
     public function encode(): string
     {
         if ($this->url === 'http://' || $this->url === 'https://') {
@@ -84,8 +100,11 @@ class ShortlinkService
         }
         return (string)$shortlink;
     }
-
-    public function updateShorlink($short): void
+    
+    /**
+     * @param $shortlink
+     */
+    public function updateShorlink($shortlink): void
     {
         /** @var Connection $db */
         $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
@@ -105,12 +124,15 @@ class ShortlinkService
             ->set('checksum', $checksum)
             ->set('feuser', (int)$this->feuser)
             ->where(
-                $query->expr()->eq('shortlink', $query->createNamedParameter($short))
+                $query->expr()->eq('shortlink', $query->createNamedParameter($shortlink))
             )->execute();
         }
     }
-
-    public function deleteShorlink($short): void
+    
+    /**
+     * @param $shortlink
+     */
+    public function deleteShorlink($shortlink): void
     {
         /** @var Connection $db */
         $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
@@ -119,7 +141,7 @@ class ShortlinkService
         $query->delete(self::$TABLENAME)
 
             ->where(
-                $query->expr()->eq('shortlink', $query->createNamedParameter($short))
+                $query->expr()->eq('shortlink', $query->createNamedParameter($shortlink))
             )->execute();
     }
     /**
