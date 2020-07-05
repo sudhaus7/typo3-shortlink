@@ -108,8 +108,6 @@ class ShortlinkService
     {
         /** @var Connection $db */
         $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
-        $query = $db->createQueryBuilder();
-
         $checksum = hash('sha256', $this->url.'-'.$this->feuser);
         $query = $db->createQueryBuilder();
         $row = $query->select('*')
@@ -120,7 +118,7 @@ class ShortlinkService
 
         if (empty($row)) {
             $query->update(self::$TABLENAME)
-            ->set('redirectto', $query->createNamedParameter($this->url))
+            ->set('redirectto', $this->url)
             ->set('checksum', $checksum)
             ->set('feuser', (int)$this->feuser)
             ->where(

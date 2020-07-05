@@ -69,7 +69,7 @@ class RedirectMiddleware implements MiddlewareInterface
      */
     private function handleGet(array $pathArr): ?ResponseInterface
     {
-        if ('/'.$pathArr[0].'/' === $this->confArr && !empty($pathArr[1])) {
+        if ('/'.$pathArr[0].'/' === $this->confArr['base'] && !empty($pathArr[1])) {
 
             /** @var ShortlinkService $shortLink */
             $shortLink = GeneralUtility::makeInstance(ShortlinkService::class);
@@ -205,17 +205,16 @@ class RedirectMiddleware implements MiddlewareInterface
 
     protected function checkAuthorisation(ServerRequestInterface $request): bool
     {
-        if ($request->hasHeader('Authorization')) {
-            $authheader = $request->getHeader('Authorization');
+
+        if ($request->hasHeader('apikey')) {
+            [$apikey] = $request->getHeader('apikey');
+            $apikey = trim($apikey);
             // We expect ApiKey as Method and the api key as payload
-            if (!empty($authheader)) {
-                [$method, $apikey] = GeneralUtility::trimExplode(' ', $authheader[0], true);
-                if (strtolower($method)==='apikey' && !empty($apikey)) {
-                    /** @var PasswordHashFactory $hashService */
-                    $hashService = GeneralUtility::makeInstance(PasswordHashFactory::class);
-                    $hashInstance = $hashService->getDefaultHashInstance('BE');
-                    return $hashInstance->checkPassword($apikey, $this->confArr['apikey']);
-                }
+            if (!empty($apikey)) {
+                /** @var PasswordHashFactory $hashService */
+                $hashService = GeneralUtility::makeInstance(PasswordHashFactory::class);
+                $hashInstance = $hashService->getDefaultHashInstance('BE');
+                return $hashInstance->checkPassword($apikey, $this->confArr['apikey']);
             }
         }
         return false;
