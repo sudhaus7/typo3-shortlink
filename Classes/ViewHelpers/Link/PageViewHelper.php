@@ -3,7 +3,6 @@
 
 namespace SUDHAUS7\Shortcutlink\ViewHelpers\Link;
 
-
 use SUDHAUS7\Shortcutlink\Service\ShortlinkService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -16,9 +15,8 @@ class PageViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument('chainToUserid', 'int', 'Only this user is allowed to use this shortlink', false, 0);
-        
     }
-    
+
     /**
      * @return string Rendered page URI
      */
@@ -50,15 +48,15 @@ class PageViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
             ->setAddQueryStringMethod($addQueryStringMethod)
             ->build();
         if ((string)$uri !== '') {
-    
+
             /** @var ShortlinkService $shortener */
             $shortener = GeneralUtility::makeInstance(ShortlinkService::class);
-    
+
             $shortener->setUrl($uri);
             $shortener->setFeuser($this->arguments['chainToUserid']);
-    
+
             $this->tag->addAttribute('href', $shortener->getShorturlWithDomain());
-            
+
             $this->tag->setContent($this->renderChildren());
             $this->tag->forceClosingTag(true);
             $result = $this->tag->render();
