@@ -85,6 +85,43 @@ class ShortlinkService
         return (string)$shortlink;
     }
 
+    public function updateShorlink($short): void
+    {
+        /** @var Connection $db */
+        $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
+        $query = $db->createQueryBuilder();
+
+        $checksum = hash('sha256', $this->url.'-'.$this->feuser);
+        $query = $db->createQueryBuilder();
+        $row = $query->select('*')
+            ->from(self::$TABLENAME)
+            ->where(
+                $query->expr()->eq('checksum', $query->createNamedParameter($checksum))
+            )->execute()->fetch();
+
+        if (empty($row)) {
+            $query->update(self::$TABLENAME)
+            ->set('redirectto', $query->createNamedParameter($this->url))
+            ->set('checksum', $checksum)
+            ->set('feuser', (int)$this->feuser)
+            ->where(
+                $query->expr()->eq('shortlink', $query->createNamedParameter($short))
+            )->execute();
+        }
+    }
+
+    public function deleteShorlink($short): void
+    {
+        /** @var Connection $db */
+        $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
+
+        $query = $db->createQueryBuilder();
+        $query->delete(self::$TABLENAME)
+
+            ->where(
+                $query->expr()->eq('shortlink', $query->createNamedParameter($short))
+            )->execute();
+    }
     /**
      * @param string $shortlink
      * @return string
