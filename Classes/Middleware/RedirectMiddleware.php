@@ -25,21 +25,21 @@ class RedirectMiddleware implements MiddlewareInterface
         if (strpos($request->getUri()->getPath(), $confArr['base'])===0) {
             $pathArr = GeneralUtility::trimExplode('/', trim($request->getUri()->getPath(), '/'));
             if ('/'.$pathArr[0].'/'===$confArr['base'] && !empty($pathArr[1])) {
-    
+
                 /** @var ShortlinkService $shortLink */
                 $shortLink = GeneralUtility::makeInstance(ShortlinkService::class);
-    
-    
+
+
                 // we have to do a prelimenary authentication here..
                 /** @var FrontendUserAuthentication $frontendUser */
                 $frontendUser = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
                 $frontendUser->start();
-                
-                if(($frontendUser->user[$frontendUser->userid_column ?? 'uid'] ?? 0) > 0) {
+
+                if (($frontendUser->user[$frontendUser->userid_column ?? 'uid'] ?? 0) > 0) {
                     // is logged in, set user
                     $shortLink->setFeuser($frontendUser->user[$frontendUser->userid_column ?? 'uid']);
                 }
-                
+
                 /** @var Response $response */
                 $response = GeneralUtility::makeInstance(Response::class);
                 try {

@@ -45,11 +45,10 @@ class ShortlinkService
 
     public function encode(): string
     {
-
         if ($this->url === 'http://' || $this->url === 'https://') {
             return $this->url;
         }
-        
+
         /** @var Connection $db */
         $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);
 
@@ -102,7 +101,7 @@ class ShortlinkService
             ->where(
                 $query->expr()->eq('shortlink', $query->createNamedParameter($shortlink))
             )->execute()->fetch();
-        
+
         // check if we got something, otherwise throw exception
         if (empty($row)) {
             throw new NoSuchShortlinkException('Shortlink Not Found '.$shortlink, 1591368921);
@@ -128,7 +127,7 @@ class ShortlinkService
         if ($request === null) {
             /** @var Site $site */
             $site = $GLOBALS['TYPO3_REQUEST']->getAttribute('site');
-            
+
             $shortlink = rtrim((string) $site->getBase(), '/').$shortlink;
         } else {
             $site = $request->getAttribute('site');
