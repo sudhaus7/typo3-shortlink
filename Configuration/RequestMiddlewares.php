@@ -9,9 +9,12 @@ return [
 
         'shortcutlink/frontend/redirect' => [
             'target' => RedirectMiddleware::class,
-            'before' => [
-                'typo3/cms-frontend/preprocessing',
+            'after' => [
+                'typo3/cms-frontend/site',
             ],
+            'before' => [
+                'typo3/cms-frontend/backend-user-authentication',
+            ]
         ]
     ],
 ];
