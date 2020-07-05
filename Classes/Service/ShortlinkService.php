@@ -130,7 +130,7 @@ class ShortlinkService
     /**
      * @param $shortlink
      */
-    public function deleteShorlink($shortlink): void
+    public function deleteShortlink($shortlink): void
     {
         /** @var Connection $db */
         $db = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable(self::$TABLENAME);

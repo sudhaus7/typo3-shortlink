@@ -154,7 +154,7 @@ class RedirectMiddleware implements MiddlewareInterface
         } catch (ShortlinkPermissionDeniedException $e) {
             // we will ignore the user at this stage
         }
-        $shortlink->deleteShorlink($pathArr[1]);
+        $shortlink->deleteShortlink($pathArr[1]);
         $response->getBody()->write('OK');
         return $response->withHeader('Content-type', 'text/plain');
     }
