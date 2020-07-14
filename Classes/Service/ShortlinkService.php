@@ -29,7 +29,12 @@ class ShortlinkService
      * @var int FrontendUser ID
      */
     private $feuser = 0;
-    
+
+    /**
+     * @var array
+     */
+    private $confArr = [];
+
     /**
      * @var array
      */
@@ -37,6 +42,7 @@ class ShortlinkService
 
     public function __construct()
     {
+        $this->confArr = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('shortcutlink');
     }
     
     /**
@@ -101,7 +107,7 @@ class ShortlinkService
         }
         return (string)$shortlink;
     }
-    
+
     /**
      * @param $shortlink
      */
@@ -127,7 +133,7 @@ class ShortlinkService
             )->execute();
         }
     }
-    
+
     /**
      * @param $shortlink
      */
@@ -171,13 +177,13 @@ class ShortlinkService
         if ($row['feuser'] > 0 && $this->feuser!==$row['feuser']) {
             throw new ShortlinkPermissionDeniedException('Shortlink user missmatch', 1591382868);
         }
-
-        $query->update(self::$TABLENAME)
-            ->set('tstamp', time())
-            ->where(
-                $query->expr()->eq('shortlink', $query->createNamedParameter($shortlink))
-            )->execute();
-
+        if ($this->confArr['updateTimestamp'] === "1") {
+            $query->update(self::$TABLENAME)
+                ->set('tstamp', time())
+                ->where(
+                    $query->expr()->eq('shortlink', $query->createNamedParameter($shortlink))
+                )->execute();
+        }
         return $row['redirectto'];
     }
 
@@ -205,9 +211,6 @@ class ShortlinkService
      */
     public function getShorturl()
     {
-        $confArr = GeneralUtility::makeInstance(ExtensionConfiguration::class)
-            ->get('shortcutlink');
-
-        return $confArr['base'].$this->encode();
+        return $this->confArr['base'].$this->encode();
     }
 }

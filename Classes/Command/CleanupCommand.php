@@ -2,12 +2,10 @@
 
 namespace SUDHAUS7\Shortcutlink\Command;
 
-use Educo\Eddaylight\Utility\FileHelper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -38,7 +36,7 @@ class CleanupCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output){
         $olderThan = 1209600;
         if ($input->getArgument('olderThanSeconds') != '') {
-            $olderThan = $input->getArgument('olderThanSeconds');
+            $olderThan = (int)$input->getArgument('olderThanSeconds');
         }
         $olderThanStamp = time()-$olderThan;
         try {
