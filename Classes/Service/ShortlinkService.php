@@ -85,6 +85,7 @@ class ShortlinkService
                     'pid'=>0,
                     'checksum'=>$checksum,
                     'redirectto'=>$this->url,
+                    'tstamp'=>time(),
                     'feuser'=>$this->feuser
                 ])->execute();
 
@@ -170,6 +171,12 @@ class ShortlinkService
         if ($row['feuser'] > 0 && $this->feuser!==$row['feuser']) {
             throw new ShortlinkPermissionDeniedException('Shortlink user missmatch', 1591382868);
         }
+
+        $query->update(self::$TABLENAME)
+            ->set('tstamp', time())
+            ->where(
+                $query->expr()->eq('shortlink', $query->createNamedParameter($shortlink))
+            )->execute();
 
         return $row['redirectto'];
     }
