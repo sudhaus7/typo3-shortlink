@@ -3,3 +3,6 @@ base = /goto/
 
 # cat=basic//02; type=user[SUDHAUS7\Shortcutlink\Backend\ExtTemplateKeyGenerator->render]; label=(hashed) API Authorization Key. You got the api key before, this is the hashed version
 apikey =
+
+# cat=basic//03; type=boolean; label=Update timestamp when shortlink is used?
+updateTimestamp = false
