@@ -22,7 +22,7 @@ class CleanupCommand extends Command {
     protected function configure()
     {
         $this->setDescription('deletes all shortlink entries last used/created older than ...');
-        $this->addArgument('olderThanSeconds',InputArgument::OPTIONAL,'Delete entries created before or last used since (seconds, default: 1209600 -> 2 weeks)',1209600);
+        $this->addArgument('olderThanSeconds',InputArgument::OPTIONAL,'Delete entries created before or last used since (seconds, default: 1209600 -> 2 weeks)');
         $this->setHelp('A detailed description, if your command was prefixed with "help"');
     }
 
@@ -36,7 +36,10 @@ class CleanupCommand extends Command {
      * @return null|int null or 0 if everything went fine, or an error code
      */
     protected function execute(InputInterface $input, OutputInterface $output){
-        $olderThan = $input->getArgument('olderThanSeconds');
+        $olderThan = 1209600;
+        if ($input->getArgument('olderThanSeconds') != '') {
+            $olderThan = $input->getArgument('olderThanSeconds');
+        }
         $olderThanStamp = time()-$olderThan;
         try {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_shortcutlink_domain_model_shortlink');
