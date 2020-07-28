@@ -1,7 +1,6 @@
 <?php
 
 
-use SUDHAUS7\Shortcutlink\Middleware\NewApikeyMiddleware;
 use SUDHAUS7\Shortcutlink\Middleware\RedirectMiddleware;
 
 return [
