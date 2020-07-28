@@ -10,10 +10,7 @@ return [
         'shortcutlink/frontend/redirect' => [
             'target' => RedirectMiddleware::class,
             'after' => [
-                'typo3/cms-frontend/site',
-            ],
-            'before' => [
-                'typo3/cms-frontend/backend-user-authentication',
+                'typo3/cms-core/normalized-params-attribute',
             ]
         ]
     ],
