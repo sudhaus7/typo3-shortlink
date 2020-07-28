@@ -2,7 +2,7 @@
     "name": "sudhaus7/shortcutlink",
     "description": "A flexible url shortener for TYPO3, with FLUID ViewHelpers and Encodeservice",
     "homepage": "https://github.com/sudhaus7/typo3-shortlink",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "keywords": [
         "typo3",
         "url",
