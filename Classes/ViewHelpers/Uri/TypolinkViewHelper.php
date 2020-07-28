@@ -3,7 +3,6 @@
 
 namespace SUDHAUS7\Shortcutlink\ViewHelpers\Uri;
 
-
 use SUDHAUS7\Shortcutlink\Service\ShortlinkService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -17,9 +16,8 @@ class TypolinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Uri\TypolinkViewHe
     {
         parent::initializeArguments();
         $this->registerArgument('chainToUserid', 'int', 'Only this user is allowed to use this shortlink', false, 0);
-        
     }
-    
+
     /**
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
@@ -31,10 +29,10 @@ class TypolinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Uri\TypolinkViewHe
         $uri = parent::renderStatic($arguments, $renderChildrenClosure, $renderingContext);
         /** @var ShortlinkService $shortener */
         $shortener = GeneralUtility::makeInstance(ShortlinkService::class);
-        
+
         $shortener->setUrl($uri);
         $shortener->setFeuser($arguments['chainToUserid']);
-        
+
         return $shortener->getShorturlWithDomain();
     }
 }

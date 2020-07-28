@@ -59,3 +59,5 @@ fabric.properties
 
 tests/_output/*
 /Documentation-GENERATED-temp
+/config/
+/var/

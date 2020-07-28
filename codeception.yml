@@ -1,0 +1,20 @@
+# suite config
+suites:
+    api:
+        actor: ApiTester
+        path: .
+        modules:
+            enabled:
+                - REST:
+                    url: http://127.0.0.1:8076/goto
+                    depends: PhpBrowser
+
+paths:
+    tests: Tests
+    output: Tests/_output
+    data: Tests/_data
+    support: Tests/_support
+
+settings:
+    shuffle: false
+    lint: true

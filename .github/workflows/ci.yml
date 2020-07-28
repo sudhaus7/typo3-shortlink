@@ -21,6 +21,7 @@ jobs:
           composer require tuupola/base62 ^2.0  --ignore-platform-reqs --no-progress
           mv composer.json-orig composer.json
           rm composer.lock
+          rm -rf Tests
       - name: Publish to TER
         uses: the-coding-owl/action-typo3-extension-repository-upload@0.0.1
         env:
