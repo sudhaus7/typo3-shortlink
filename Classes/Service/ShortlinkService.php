@@ -4,9 +4,11 @@
 namespace SUDHAUS7\Shortcutlink\Service;
 
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
 use SUDHAUS7\Shortcutlink\Exception\NoSuchShortlinkException;
 use SUDHAUS7\Shortcutlink\Exception\ShortlinkPermissionDeniedException;
 use Tuupola\Base62;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -24,7 +26,7 @@ class ShortlinkService
      * @var string
      */
     private $url = '';
-    
+
     /**
      * @var int FrontendUser ID
      */
@@ -44,7 +46,26 @@ class ShortlinkService
     {
         $this->confArr = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('shortcutlink');
     }
-    
+
+    /**
+     * @param Site $site
+     * @return UriInterface
+     */
+    protected static function getBaseUrl(Site $site): UriInterface
+    {
+        $base = $site->getBase();
+        try {
+            $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+            $sys_language_uid = $languageAspect->getId();
+            if ($sys_language_uid > 0) {
+                $siteLanguage = $site->getLanguageById($sys_language_uid);
+                $base = $siteLanguage->getBase();
+            }
+        } catch (\Exception $e) {
+        }
+        return $base;
+    }
+
     /**
      * @param string $url
      */
@@ -52,7 +73,7 @@ class ShortlinkService
     {
         $this->url = $url;
     }
-    
+
     /**
      * @param int $feuser
      */
@@ -60,7 +81,7 @@ class ShortlinkService
     {
         $this->feuser = $feuser;
     }
-    
+
     /**
      * @return string
      * @throws \Exception
@@ -197,14 +218,17 @@ class ShortlinkService
         if ($request === null) {
             /** @var Site $site */
             $site = $GLOBALS['TYPO3_REQUEST']->getAttribute('site');
-
-            $shortlink = rtrim((string) $site->getBase(), '/').$shortlink;
+            $base = self::getBaseUrl($site);
+            $shortlink = rtrim((string) $base, '/').$shortlink;
         } else {
+            /** @var Site $site */
             $site = $request->getAttribute('site');
-            $shortlink = rtrim((string)$site->getBase(), '/').$shortlink;
+            $base = self::getBaseUrl($site);
+            $shortlink = rtrim((string)$base, '/').$shortlink;
         }
         return $shortlink;
     }
+
 
     /**
      * @return string

@@ -205,7 +205,6 @@ class RedirectMiddleware implements MiddlewareInterface
 
     protected function checkAuthorisation(ServerRequestInterface $request): bool
     {
-
         if ($request->hasHeader('apikey')) {
             [$apikey] = $request->getHeader('apikey');
             $apikey = trim($apikey);

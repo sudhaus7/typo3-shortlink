@@ -10,8 +10,8 @@ use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
-
-class CleanupCommand extends Command {
+class CleanupCommand extends Command
+{
 
 
     /**
@@ -20,7 +20,7 @@ class CleanupCommand extends Command {
     protected function configure()
     {
         $this->setDescription('deletes all shortlink entries last used/created older than ...');
-        $this->addArgument('olderThanSeconds',InputArgument::OPTIONAL,'Delete entries created before or last used since (seconds, default: 1209600 -> 2 weeks)');
+        $this->addArgument('olderThanSeconds', InputArgument::OPTIONAL, 'Delete entries created before or last used since (seconds, default: 1209600 -> 2 weeks)');
         $this->setHelp('A detailed description, if your command was prefixed with "help"');
     }
 
@@ -33,7 +33,8 @@ class CleanupCommand extends Command {
      *
      * @return null|int null or 0 if everything went fine, or an error code
      */
-    protected function execute(InputInterface $input, OutputInterface $output){
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $olderThan = 1209600;
         if ($input->getArgument('olderThanSeconds') != '') {
             $olderThan = (int)$input->getArgument('olderThanSeconds');
@@ -45,7 +46,7 @@ class CleanupCommand extends Command {
                 ->where(
                     $queryBuilder->expr()->lt('tstamp', $queryBuilder->createNamedParameter($olderThanStamp))
                 )->execute();
-        } catch (Exception $e){
+        } catch (Exception $e) {
             return 1;
         }
         return 0;
