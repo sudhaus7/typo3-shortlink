@@ -4,7 +4,7 @@
 namespace SUDHAUS7\Shortcutlink\Backend;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\ViewHelpers\Form\TypoScriptConstantsViewHelper;
+use TYPO3\CMS\Install\ViewHelpers\Form\TypoScriptConstantsViewHelper ;
 
 class ExtTemplateKeyGenerator
 {
