@@ -18,7 +18,7 @@
     "license": "MIT",
     "type": "typo3-cms-extension",
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.1",
         "typo3/cms-core": "11.5.*",
         "tuupola/base62": "^2.0.0"
     },
