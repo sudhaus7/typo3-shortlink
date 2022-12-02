@@ -5,6 +5,7 @@ namespace SUDHAUS7\Shortcutlink\ViewHelpers\Link;
 
 use SUDHAUS7\Shortcutlink\Service\ShortlinkService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 class ActionViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionViewHelper
 {
@@ -29,7 +30,6 @@ class ActionViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionViewHelpe
         $pageUid = (int)$this->arguments['pageUid'] ?: null;
         $pageType = (int)$this->arguments['pageType'];
         $noCache = (bool)$this->arguments['noCache'];
-        $noCacheHash = (bool)$this->arguments['noCacheHash'];
         $section = (string)$this->arguments['section'];
         $format = (string)$this->arguments['format'];
         $linkAccessRestrictedPages = (bool)$this->arguments['linkAccessRestrictedPages'];
@@ -37,15 +37,13 @@ class ActionViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionViewHelpe
         $absolute = (bool)$this->arguments['absolute'];
         $addQueryString = (bool)$this->arguments['addQueryString'];
         $argumentsToBeExcludedFromQueryString = (array)$this->arguments['argumentsToBeExcludedFromQueryString'];
-        $addQueryStringMethod = $this->arguments['addQueryStringMethod'];
         $parameters = $this->arguments['arguments'];
-        $uriBuilder = $this->renderingContext->getControllerContext()->getUriBuilder();
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uri = $uriBuilder
             ->reset()
             ->setTargetPageUid($pageUid)
             ->setTargetPageType($pageType)
             ->setNoCache($noCache)
-            ->setUseCacheHash(!$noCacheHash)
             ->setSection($section)
             ->setFormat($format)
             ->setLinkAccessRestrictedPages($linkAccessRestrictedPages)
@@ -53,7 +51,6 @@ class ActionViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionViewHelpe
             ->setCreateAbsoluteUri($absolute)
             ->setAddQueryString($addQueryString)
             ->setArgumentsToBeExcludedFromQueryString($argumentsToBeExcludedFromQueryString)
-            ->setAddQueryStringMethod($addQueryStringMethod)
             ->uriFor($action, $parameters, $controller, $extensionName, $pluginName);
         if ($uri === '') {
             return $this->renderChildren();

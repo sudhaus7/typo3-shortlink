@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  SUDHAUS7\Shortcutlink\:
+    resource: '../Classes/*'
+
+  SUDHAUS7\Shortcutlink\Command\CleanupCommand:
+    tags:
+      - { name: 'console.command', command: 'shortcutlink:cleanup', description: 'Delete entries created before or last used since (seconds, default: 1209600 -> 2 weeks)' }

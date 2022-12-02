@@ -28,7 +28,7 @@ class ExtTemplateKeyGenerator
      * @param TypoScriptConstantsViewHelper $parentObject
      * @return string
      */
-    public function render(array $parameter = array(), TypoScriptConstantsViewHelper $parentObject)
+    public function render(array $parameter, TypoScriptConstantsViewHelper $parentObject)
     {
         $field = sprintf('<input type="hidden" name="%s" value="%s"/>', $parameter['fieldName'], trim($parameter['fieldValue']));
 

@@ -19,16 +19,16 @@
     "type": "typo3-cms-extension",
     "require": {
         "php": ">=7.2",
-        "typo3/cms-core": "10.4.*",
+        "typo3/cms-core": "11.5.*",
         "tuupola/base62": "^2.0.0"
     },
     "require-dev": {
-        "typo3/cms-fluid-styled-content": "^10.4",
-        "typo3/cms-tstemplate": "^10.4",
-        "typo3/cms-backend": "^10.4",
-        "typo3/cms-t3editor": "^10.4",
-        "typo3/cms-lowlevel": "^10.4",
-        "typo3/cms-fluid": "^10.4",
+        "typo3/cms-fluid-styled-content": "^11.5",
+        "typo3/cms-tstemplate": "^11.5",
+        "typo3/cms-backend": "^11.5",
+        "typo3/cms-t3editor": "^11.5",
+        "typo3/cms-lowlevel": "^11.5",
+        "typo3/cms-fluid": "^11.5",
         "codeception/codeception": "^4.1",
         "codeception/phpbuiltinserver": "*",
         "helhum/typo3-console": "^6.0",
