@@ -2,7 +2,6 @@
     "name": "sudhaus7/shortcutlink",
     "description": "A flexible url shortener for TYPO3, with FLUID ViewHelpers and Encodeservice",
     "homepage": "https://github.com/sudhaus7/typo3-shortlink",
-    "version": "2.0.0",
     "keywords": [
         "typo3",
         "url",
@@ -18,7 +17,7 @@
     "license": "MIT",
     "type": "typo3-cms-extension",
     "require": {
-        "php": ">=7.2",
+        "php": "7.4.* || 8.0.* || 8.1.*",
         "typo3/cms-core": "11.5.*",
         "tuupola/base62": "^2.0.0"
     },
